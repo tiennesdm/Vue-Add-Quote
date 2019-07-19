@@ -1,25 +1,20 @@
 <template>
   <v-app>
-    <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Add</span>
-        <span class="font-weight-light">Quotes</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        flat
-        href="https://github.com/tiennesdm"
-        target="_blank"
-      >
-        <span class="mr-2">tiennesdm</span>
-      </v-btn>
-    </v-toolbar>
+   <Header />
    
 
     <v-content>
        <Carousel/>
+       <Progress :quoteCount="quotes.length" :maxQuotes="maxQuotes"/>
       <FormVue @quoteCreated="newQuote"/>
-      <QuoteGrid :quotes="quotes"/>
+      <v-container>
+      <div class="col-sm-12 text-center">
+                <div class="alert alert-info">Info: Click on a Quote to delete it!</div>
+            </div>
+       
+      </v-container>
+           
+      <QuoteGrid :quotes="quotes" @quoteDeleted="deletequote"/>
     
     </v-content>
     <Footer/>
@@ -33,16 +28,20 @@ import Footer from './components/Footer'
 import Carousel from './components/Carousel'
 //import Quote from './components/Quote'
 import QuoteGrid from './components/QuoteGrid'
+import Header from './components/Header'
 //import Jumbotron from './components/Jumbotron'
+import Progress from './components/Progress'
 
 export default {
   name: 'App',
   components: {
+    Header,
     FormVue,
     Footer,
     Carousel,
  //   Quote,
-    QuoteGrid
+    QuoteGrid,
+    Progress
   //  Jumbotron
   },
   data: ()  => {
@@ -50,14 +49,28 @@ export default {
       quotes: [
         'Just to see the Quote'
       ],
-      maxQuotes:10
+      maxQuotes:12
       //
     }
   },
   methods:{
     newQuote(quote){
-      console.log('quote', quote);
+      if(this.quotes.length===this.maxQuotes){
+        alert('Please delete quote first');
+      }
+      else if(quote === ''){
+        alert('Please insert some text');
+      }
+      else{
+         console.log('quote', quote);
       this.quotes.push(quote);
+
+      }
+     
+    },
+    deletequote(index){
+      console.log('index', index);
+      this.quotes.splice(index, 1);
     }
 
   }
