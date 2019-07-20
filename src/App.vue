@@ -7,12 +7,7 @@
        <Carousel/>
        <Progress :quoteCount="quotes.length" :maxQuotes="maxQuotes"/>
       <FormVue @quoteCreated="newQuote"/>
-      <v-container>
-      <div class="col-sm-12 text-center">
-                <div class="alert alert-info">Info: Click on a Quote to delete it!</div>
-            </div>
-       
-      </v-container>
+      <Message />
            
       <QuoteGrid :quotes="quotes" @quoteDeleted="deletequote"/>
     
@@ -23,14 +18,15 @@
 
 <script>
 // import HelloWorld from './components/HelloWorld'
-import FormVue from  './components/FormVue'
-import Footer from './components/Footer'
-import Carousel from './components/Carousel'
+import FormVue from  './components/Main-app/FormVue'
+import Footer from './components/Main-app/Footer'
+import Carousel from './components/Main-app/Carousel'
 //import Quote from './components/Quote'
-import QuoteGrid from './components/QuoteGrid'
-import Header from './components/Header'
+import QuoteGrid from './components/Main-app/QuoteGrid'
+import Header from './components/Main-app/Header'
 //import Jumbotron from './components/Jumbotron'
-import Progress from './components/Progress'
+import Progress from './components/Main-app/Progress'
+import Message from './components/Main-app/Message'
 
 export default {
   name: 'App',
@@ -41,7 +37,8 @@ export default {
     Carousel,
  //   Quote,
     QuoteGrid,
-    Progress
+    Progress,
+    Message
   //  Jumbotron
   },
   data: ()  => {
