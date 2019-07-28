@@ -1,5 +1,19 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <Header/>
+  <Form />
   </div>
 </template>
+
+<script>
+import Header from '../components/Main-app/Header'
+import Form from '../components/Form/Form'
+export default {
+  name: 'about',
+  components : {
+    Header,
+    Form
+  }
+  
+}
+</script>
